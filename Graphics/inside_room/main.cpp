@@ -11,6 +11,14 @@ double windowHeight=700, windowWidth=700;
 GLfloat alpha = 0.0, theta = 0.0, axis_x=0.0, axis_y=0.0;
 GLboolean bRotate = false, uRotate = false;
 
+GLfloat eyeX = 2;
+GLfloat eyeY = 3;
+GLfloat eyeZ = 10;
+
+GLfloat lookX = 2;
+GLfloat lookY = 0;
+GLfloat lookZ = 0;
+
 static GLfloat v_quad_strip[8][3] =
 {
     {0.0, 0.0, 0.0},
@@ -101,7 +109,7 @@ void display(void)
      //gluPerspective(60,1,5,100);
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
-    gluLookAt(2,3,8, 2,0,0, 0,1,0); // camera , ,
+    gluLookAt(eyeX,eyeY,eyeZ, lookX,lookY,lookZ, 0,1,0); // camera , ,
 
     glViewport(0, 0, windowHeight, windowWidth);
 
@@ -145,7 +153,7 @@ void display(void)
 
 //floor
     glPushMatrix();
-    glTranslatef(0,0,5);
+    glTranslatef(0,-0.1,5);
      glScalef(40,0,-30);
 
       drawcube(deep_ash[0],deep_ash[1],deep_ash[2]);
@@ -335,6 +343,125 @@ void display(void)
      drawcube(brown[0],brown[1],brown[2]);
      glPopMatrix();
 
+
+    //laptop
+
+     glPushMatrix();
+//    glColor3f(0.3, 0.4, 0.5);
+    glTranslatef(170, 4.9, -25);
+    glScalef(2.5, 0.0, 3);
+    float black[] = {0.0, 0.0, 0.0};
+    drawcube(black[0],black[1],black[2]);
+    glPopMatrix();
+
+
+    glPushMatrix();
+//    glColor3f(0.3, 0.4, 0.5);
+    glTranslatef(183, 4.9, -25);
+    glScalef(0, 0.2, 3);
+    float pink[] = {1.0, 0.1, 1.0};
+    drawcube(pink[0],pink[1],pink[2]);
+    glPopMatrix();
+
+
+//    glPushMatrix();
+//    glTranslatef(166.5, 5.05, -13);
+//    glScalef(0, 0.155, 2.4);
+//    color = {1.0, 1.0, 1.0};
+
+    glPushMatrix();
+//    glColor3f(0.3, 0.4, 0.5);
+    glTranslatef(182.5, 5.05, -23);
+    glScalef(0, 0.155, 2.4);
+//    color = {1.0, 1.0, 1.0};
+    drawcube(white[0], white[1],white[2]);
+    glPopMatrix();
+
+     //Chair
+//        glPushMatrix();
+//     glTranslatef(145,0,-5);
+//     glScalef(0.6,0.9,.4);
+//     drawcube(white[0],white[1],white[2]);
+//     glPopMatrix();
+//
+//     glPushMatrix();
+//     glTranslatef(170,0,-5);
+//     glScalef(0.6,0.4,.4);
+//     drawcube(white[0],white[1],white[2]);
+//     glPopMatrix();
+//
+//     glPushMatrix();
+//     glTranslatef(145,0,-35);
+//     glScalef(0.6,0.9,.4);
+//     drawcube(white[0],white[1],white[2]);
+//     glPopMatrix();
+//
+//     glPushMatrix();
+//     glTranslatef(170,0,-35);
+//     glScalef(0.6,0.4,.4);
+//     drawcube(white[0],white[1],white[2]);
+//     glPopMatrix();
+//
+//     glPushMatrix();
+//     glTranslatef(145,1.8,-5);
+//     glScalef(6,.1,-6);
+//     drawcube(white[0],white[1],white[2]);
+//     glPopMatrix();
+//
+//     glPushMatrix();
+//     glTranslatef(145,5,15);
+//     glScalef(0.1,0.2,-6);
+//     drawcube(white[0],white[1],white[2]);
+//     glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(155, 0, -10);
+    glScalef(0.6, 1, .4);
+//    vector<float> color = {1.0, 1.0, 1.0};
+    float yellow[] = {0.5451, 0.2706, 0.0745};
+    drawcube(yellow[0],yellow[1],yellow[2]);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(155, 0, -30);
+    glScalef(0.6, 1, .4);
+//    color = {1.0, 1.0, 1.0};
+    drawcube(yellow[0],yellow[1],yellow[2]);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(175, 0, -10);
+    glScalef(0.6, 0.4, .4);
+//    color = {1.0, 1.0, 1.0};
+    drawcube(yellow[0],yellow[1],yellow[2]);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(175, 0, -30);
+    glScalef(0.6, 0.4, .4);
+//    color = {1.0, 1.0, 1.0};
+    drawcube(yellow[0],yellow[1],yellow[2]);
+    glPopMatrix();
+
+//     upper portion of the chair
+    glPushMatrix();
+    glTranslatef(157, 1.9, -7.8);
+    glScalef(4.5, 0.1, -4.5);
+//    color = {1.0, 0.0, 0.0};
+    drawcube(yellow[0],yellow[1],yellow[2]);
+    glPopMatrix();
+
+
+    //
+    glPushMatrix();
+    glTranslatef(155, 3.3, -27.5);
+    glScalef(0.6, 0.3, 3.5);
+//    color = {1.0, 1.0, 0.0};
+    drawcube(white[0],white[1],white[2]);
+    glPopMatrix();
+
+
     glFlush();
     glutSwapBuffers();
 }
@@ -359,13 +486,35 @@ void myKeyboardFunc( unsigned char key, int x, int y )
         axis_x=1.0;
         axis_y=0.0;
         break;
-    case '+':
-        Tzval+=0.2;
+
+
+    case '+': //zoom in
+        eyeZ++;
+        lookZ++;
+        break;
+    case '-': //zoom out
+        eyeZ--;
+        lookZ--;
+        break;
+    case '*': //zoom up
+        eyeY++;
+        lookY++;
+        break;
+    case '/': //zoom down
+        eyeY--;
+        lookY--;
         break;
 
-    case '-':
-        Tzval-=0.2;
+    case 'x':
+        eyeX++;
+        lookX++;
         break;
+    case 'z':
+        eyeX--;
+        lookX--;
+        break;
+
+
 
     case 27:	// Escape key
         exit(1);
