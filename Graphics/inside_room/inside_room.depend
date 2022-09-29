@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1662926488 source:c:\users\user\desktop\inside_room\main.cpp
+1664259404 source:c:\users\user\desktop\inside_room\main.cpp
+	<bits/stdc++.h>
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>
