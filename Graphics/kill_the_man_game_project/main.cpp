@@ -15,20 +15,23 @@ double Txval=0,Tyval=0,Tzval=0;
 double windowHeight=1000, windowWidth=1000;
 //GLfloat alpha = 0.0, theta = 0.0, axis_x=0.0, axis_y=0.0, lpan = 0.0, rpan = 0.0, fdist=0.0,yaw = 0.0, dx = 0.0,dy = 0.0,dz = 0.0,roll=0.0,pitch = 0.0,cdist = 0.0,xaxis = 0.0, yaxis=1.0,zaxis=0.0;
 GLfloat alpha = 0.0, theta = 0.0,bita = 0.0, axis_x=0.0, axis_y=0.0;
+
 GLfloat up_x = 0,up_y = 1,up_z = 0;
+
 GLboolean bRotate = false, uRotate = false;
 
 GLfloat theta_pakha =0;
 //
-GLfloat eyeX =0;// 2;
-GLfloat eyeY =0;// 3;
-GLfloat eyeZ = 10;
+double wall_length = 20.0,wall_width = 0.5, wall_height = 10.0;
+GLfloat eyeX =wall_length/2;// 2;
+GLfloat eyeY =wall_height/2;// 3;
+GLfloat eyeZ = 1.5 * wall_length;
 
-GLfloat nearP = 4, farP = 300;
+GLfloat nearP = 4, farP = 250;
 
-GLfloat lookX = 0;
-GLfloat lookY = 0;
-GLfloat lookZ = 0;
+GLfloat lookX = wall_length / 2;
+GLfloat lookY = wall_height/2;
+GLfloat lookZ = wall_length/2;
 
 bool ambient0 = true, diffuse0 = true, specular0 = true;
 bool ambient1 = true, diffuse1 = true, specular1 = true;
@@ -270,6 +273,8 @@ void Pitch(bool clock = true)
 
 }
 
+
+
 void Roll(bool clock = true)
 {
     if(clock)alpha++;
@@ -310,6 +315,40 @@ void zoom(bool positive = true)
     lookX+=dx/unit_dist;
     lookY+=dy/unit_dist;
     lookZ+=dz/unit_dist;
+
+}
+
+void drawaxes()
+{
+    glPushMatrix();// axis drawing
+//        c = 9;
+
+//        glColor3f(colors[c][0],colors[c][1],colors[c][2]);
+        glColor3f(redish[0],redish[1],redish[2]);
+        glBegin(GL_LINES);
+        glVertex3f(-wall_length,0,0);
+        glVertex3f(wall_length, 0, 0);//x axis
+        glEnd();
+
+//        c = 8;
+//        glColor3f(colors[c][0],colors[c][1],colors[c][2]);
+        glColor3f(redish[0],redish[1],redish[2]);
+        glBegin(GL_LINES);
+        glVertex3f(0,0,0);
+        glVertex3f(0, wall_length, 0);//y axis
+        glEnd();
+
+//        c = 1;
+//        glColor3f(colors[c][0],colors[c][1],colors[c][2]);
+
+        glColor3f(redish[0],redish[1],redish[2]);
+        glBegin(GL_LINES);
+        glVertex3f(0,0,0);
+        glVertex3f(0, 0, wall_length);//z axis
+        glEnd();
+
+
+    glPopMatrix();
 
 }
 
@@ -741,8 +780,8 @@ void display(void)
 
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
-    glFrustum(-5,5, -5, 5, 4, 50);
-//    glFrustum(-8,8,-8,8,nearP,farP);
+//    glFrustum(-5,5, -5, 5, 4, 50);
+    glFrustum(-5,5,-5,5,nearP,farP);
     //gluPerspective(60,1,5,100);
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
@@ -753,53 +792,10 @@ void display(void)
 //    gluLookAt(eyeX,eyeY,eyeZ, axis_x, axis_y, axis_z, 0,1,0);
     glViewport(0, 0, windowHeight, windowWidth);
 
-//    glPushMatrix();
 
-//    glRotatef(10.0,0,0,1);
-
-    //sphere
-//    glPushMatrix();
-//    glTranslatef(12,-6,-8);
-
-//    glScalef(0.5,0.5,.5);
-//    drawSphere(0.0,0.5,0.0,0.0,1.0,0.0);
-//    glPopMatrix();
-
-    //front-upper bed leg
-
-//    glPushMatrix();
-//    glRotatef(-10, 0, 0, 1 );
-//    glTranslatef(0,0,0);
-//    glScalef(0.1,1,.1);
-    //lRotatef( alpha,axis_x, axis_y, 0.0 );
-    //glRotatef( theta, axis_x, axis_y, 0.0 );
-//     GLfloat color[1][3] = {1,0,0};
+    drawaxes();
 
     drawcube(redish[0],redish[1],redish[2],1,1,1);
-//     glPopMatrix();
-
-//    glRotatef(-10, 0, 0, 1 );
-
-
-//    drawRoom();
-//    drawBed();
-
-
-//    drawAlmari();
-
-
-//    drawTable();
-
-//    drawLaptop();
-
-//    drawChair();
-
-//glPushMatrix();
-//draw_terbine_base();
-//glPopMatrix();
-
-//    fan_handle();
-//    glPopMatrix();
 
 //    glPushMatrix();
 //    glTranslatef(100,3.5,-10);
