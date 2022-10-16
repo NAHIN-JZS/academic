@@ -110,7 +110,7 @@ void light0()
     GLfloat light_ambient[]  = {0.3, 0.3, 0.3, 1.0};
     GLfloat light_diffuse[]  = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-    GLfloat light_position[] = { 0.0, 9.0, 0.0, 1.0 };
+    GLfloat light_position[] = { 0.0, 100.0, 0.0, 1.0 };
 
     glEnable( GL_LIGHT0);
     if (ambient0)
@@ -584,48 +584,59 @@ void drawChair()
 
 }
 
+void drawRoad()
+{
+    //floor
+    glPushMatrix();
+    glTranslatef(-100,0.01,10);
+    glScalef(200,0,10);
+
+    drawcube(black[0],black[1],black[2],1,1,1);
+    glPopMatrix();
+
+}
 void drawRoom()
 {
     //floor
     glPushMatrix();
-    glTranslatef(0,-0.1,5);
-    glScalef(40.5,0,-30);
+    glTranslatef(-100,0,0);
+    glScalef(200,0,30);
 
-    drawcube(deep_ash[0],deep_ash[1],deep_ash[2],1,1,1);
+    drawcube(brown[0],brown[1],brown[2],1,1,1);
     glPopMatrix();
 
     //left wall
-    glPushMatrix();
-    glTranslatef(-0.5,0,5);
-    glScalef(0,2,-30);
-
-    drawcube(blue[0],blue[1],blue[2],1,1,1);
-    glPopMatrix();
+//    glPushMatrix();
+//    glTranslatef(0,0,0);
+//    glScalef(0,20,20);
+//
+//    drawcube(blue[0],blue[1],blue[2],1,1,1);
+//    glPopMatrix();
 
     //front wall
-    glPushMatrix();
-    glTranslatef(-0.5,0,-130);
-    glScalef(40,2,0);
-//     float color[] = {128.0,0.0,0.0};
-
-    drawcube(blue[0],blue[1],blue[2],1,1,1);
-    glPopMatrix();
+//    glPushMatrix();
+//    glTranslatef(0,0,0);
+//    glScalef(20,20,0);
+////     float color[] = {128.0,0.0,0.0};
+//
+//    drawcube(blue[0],blue[1],blue[2],1,1,1);
+//    glPopMatrix();
 
     //right wall
-    glPushMatrix();
-    glTranslatef(200,0,5);
-    glScalef(0,2,-30);
-
-    drawcube(blue[0],blue[1],blue[2],1,1,1);
-    glPopMatrix();
+//    glPushMatrix();
+//    glTranslatef(200,0,5);
+//    glScalef(0,2,-30);
+//
+//    drawcube(blue[0],blue[1],blue[2],1,1,1);
+//    glPopMatrix();
 
     //roof
-    glPushMatrix();
-    glTranslatef(0,10,5);
-    glScalef(40.5,0,-30);
-
-    drawcube(deep_ash[0],deep_ash[1],deep_ash[2],1,1,1);
-    glPopMatrix();
+//    glPushMatrix();
+//    glTranslatef(0,10,5);
+//    glScalef(40.5,0,-30);
+//
+//    drawcube(deep_ash[0],deep_ash[1],deep_ash[2],1,1,1);
+//    glPopMatrix();
 
 }
 
@@ -796,6 +807,8 @@ void display(void)
     drawaxes();
 
     drawcube(redish[0],redish[1],redish[2],1,1,1);
+    drawRoom();
+    drawRoad();
 
 //    glPushMatrix();
 //    glTranslatef(100,3.5,-10);
