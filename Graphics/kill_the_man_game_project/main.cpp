@@ -247,6 +247,59 @@ void drawcube(float am_r, float am_g, float am_b, float df_r,float df_g,float df
 
 }
 
+void Cylinder3D(double a1,double b1,double c1)
+{
+
+    GLfloat mat_ambient[] = { 1, 1, 1, 1.0 };
+    GLfloat mat_diffuse[] = { 1, 1, 1, 1.0 };
+    GLfloat mat_specular[] = { 1,1,1, 1.0 };
+    GLfloat mat_shininess[] = {90};
+
+    glMaterialfv( GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv( GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv( GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv( GL_FRONT, GL_SHININESS, mat_shininess);
+
+
+
+
+    GLUquadricObj *quadratic;
+
+
+    quadratic = gluNewQuadric();
+    gluQuadricTexture(quadratic, GL_TRUE);
+    glRotatef(-90.0f, 1.0f,0.0f, 0.0f);
+    gluCylinder(quadratic,a1,b1,c1,32,32);
+    //gluQuadricTexture(quadratic, TRUE);
+    gluDeleteQuadric(quadratic);
+
+}
+
+
+void circle_3D(GLdouble radius)
+{
+    GLfloat mat_ambient[] = { 1, 1, 1, 1.0 };
+    GLfloat mat_diffuse[] = { 1, 1, 1, 1.0 };
+    GLfloat mat_specular[] = { 1,1,1, 1.0 };
+    GLfloat mat_shininess[] = {90};
+
+    glMaterialfv( GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv( GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv( GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv( GL_FRONT, GL_SHININESS, mat_shininess);
+
+
+
+
+    GLUquadric *qobj = gluNewQuadric();
+    gluQuadricTexture(qobj, GL_TRUE);
+
+    glRotatef(270, 1, 0, 0);
+    gluSphere(qobj, radius, 20, 20);
+    gluDeleteQuadric(qobj);
+
+}
+
 void FrustumChange(bool positive = true)
 {
     if(positive)nearP++;
@@ -584,6 +637,183 @@ void drawChair()
 
 }
 
+void shrubberi(double pos_x=6.0,double pos_y=0.0,double pos_z =0.0)
+{
+        glPushMatrix();
+    glTranslatef(pos_x,pos_y+4,pos_z+0);
+    glBindTexture(GL_TEXTURE_2D,2);
+    glEnable(GL_TEXTURE_2D);
+    circle_3D(1.0);
+    glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(pos_x-0.8,pos_y+4.3,pos_z+0);
+    glBindTexture(GL_TEXTURE_2D,2);
+    glEnable(GL_TEXTURE_2D);
+    circle_3D(1.0);
+    glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(pos_x+0.8,pos_y+4.3,pos_z-0.2);
+    glBindTexture(GL_TEXTURE_2D,2);
+    glEnable(GL_TEXTURE_2D);
+    circle_3D(1.0);
+    glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
+}
+
+void Tree(double pos_x=0.4,double pos_y=0.3,double pos_z =10)
+//void Tree()
+{
+
+
+
+//    int randm = 10;
+//    srand(5);
+//    randm = (rand() % 9) + 8;
+
+
+
+    glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D,15);
+    glEnable(GL_TEXTURE_2D);
+    Cylinder3D(pos_x,pos_y,pos_z);
+    glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(0,pos_z+1,0);
+    glBindTexture(GL_TEXTURE_2D,2);
+    glEnable(GL_TEXTURE_2D);
+    circle_3D(2.3);
+    glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(-0.8,pos_z-0.3,0);
+    glBindTexture(GL_TEXTURE_2D,2);
+    glEnable(GL_TEXTURE_2D);
+    circle_3D(2.3);
+    glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.8,pos_z-0.3,-0.2);
+    glBindTexture(GL_TEXTURE_2D,2);
+    glEnable(GL_TEXTURE_2D);
+    circle_3D(2.3);
+    glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
+
+
+
+
+}
+
+
+void piler()
+{
+    for(int i=-100; i<100; i++)
+    for(double j = 0;j<5; j++){
+    {
+
+
+        glPushMatrix();
+        glTranslatef(8.5*i,-2.9,10+j);
+
+
+        glPushMatrix();
+        glTranslatef(3.7*i,0,10+j);
+        glScaled(1,1,1);
+        Tree(0.4,0.3,10);
+        shrubberi();
+        glPopMatrix();
+
+        GLfloat mat_ambient[] = { 1, 1, 1, 1.0 };
+        GLfloat mat_diffuse[] = { 1, 1, 1, 1.0 };
+        GLfloat mat_specular[] = { 0.1,0.1,0.1, 1.0 };
+        GLfloat mat_shininess[] = {90};
+
+        glMaterialfv( GL_FRONT, GL_AMBIENT, mat_ambient);
+        glMaterialfv( GL_FRONT, GL_DIFFUSE, mat_diffuse);
+        glMaterialfv( GL_FRONT, GL_SPECULAR, mat_specular);
+        glMaterialfv( GL_FRONT, GL_SHININESS, mat_shininess);
+
+
+
+        /*glBindTexture(GL_TEXTURE_2D,6);
+        glEnable(GL_TEXTURE_2D);
+
+        glPushMatrix();
+        //glColor3d(1,0,0);
+
+        GLUquadricObj *quadratic;
+
+        quadratic = gluNewQuadric();
+        gluQuadricTexture(quadratic, GL_TRUE);
+        glRotatef(-90.0f, 1.0f,0.0f, 0.0f);
+        gluCylinder(quadratic,0.2f,0.2f,3.0f,32,32);
+        //gluQuadricTexture(quadratic, TRUE);
+        gluDeleteQuadric(quadratic);
+        glPopMatrix();
+        glDisable(GL_TEXTURE_2D);*/
+        glPopMatrix();
+    }
+    }
+    for(int i=-100; i<100; i++)
+        for(double j = 0;j<5; j++){
+    {
+
+        glPushMatrix();
+        glTranslatef(10*i,-2.9,5-j);
+
+
+        //glPushMatrix();
+        glPushMatrix();
+        glTranslatef(2.8*i,0,5-j);
+        //glScaled(1,1,1);
+        Tree(0.4,0.3,10);
+        shrubberi();
+        glPopMatrix();
+        //glPopMatrix();
+
+        GLfloat mat_ambient[] = { 1, 1, 1, 1.0 };
+        GLfloat mat_diffuse[] = { 1, 1, 1, 1.0 };
+        GLfloat mat_specular[] = { 0.1,0.1,0.1, 1.0 };
+        GLfloat mat_shininess[] = {80};
+
+        glMaterialfv( GL_FRONT, GL_AMBIENT, mat_ambient);
+        glMaterialfv( GL_FRONT, GL_DIFFUSE, mat_diffuse);
+        glMaterialfv( GL_FRONT, GL_SPECULAR, mat_specular);
+        glMaterialfv( GL_FRONT, GL_SHININESS, mat_shininess);
+
+
+
+
+        /*glBindTexture(GL_TEXTURE_2D,6);
+        glEnable(GL_TEXTURE_2D);
+        glPushMatrix();
+        //glColor3d(1,0,0);
+        GLUquadricObj *quadratic;
+        quadratic = gluNewQuadric();
+        gluQuadricTexture(quadratic, GL_TRUE);
+        glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+        gluCylinder(quadratic,0.2f,0.2f,3.0f,32,32);
+        //gluQuadricTexture(quadratic, TRUE);
+        gluDeleteQuadric(quadratic);
+        glPopMatrix();
+        glDisable(GL_TEXTURE_2D);*/
+        glPopMatrix();
+    }
+
+        }
+}
+
 void drawRoad()
 {
     //floor
@@ -809,6 +1039,7 @@ void display(void)
     drawcube(redish[0],redish[1],redish[2],1,1,1);
     drawRoom();
     drawRoad();
+    piler();
 
 //    glPushMatrix();
 //    glTranslatef(100,3.5,-10);

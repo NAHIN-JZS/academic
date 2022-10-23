@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1665936580 source:f:\4.2\academic\graphics\kill_the_man_game_project\main.cpp
+1666497119 source:f:\4.2\academic\graphics\kill_the_man_game_project\main.cpp
 	<bits/stdc++.h>
 	<GL/gl.h>
 	<GL/glu.h>
